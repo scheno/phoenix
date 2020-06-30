@@ -1,0 +1,79 @@
+// 声明gradle脚本自身需要的资源，优先执行
+buildscript {
+	ext {
+		springBootVersion = '2.2.8.RELEASE'
+		springDependencyManagementVersion = '1.0.9.RELEASE'
+	}
+
+	repositories {
+		maven {
+			url 'http://maven.aliyun.com/nexus/content/groups/public/'
+		}
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+		mavenCentral()
+	}
+
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+		classpath "io.spring.gradle:dependency-management-plugin:${springDependencyManagementVersion}"
+	}
+}
+
+// 所有模块通用配置
+allprojects {
+
+	apply plugin: 'java'
+	apply plugin: 'idea'
+	apply plugin:'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+	group = 'com.schening'
+	version = '0.0.1-SNAPSHOT'
+
+	// JVM版本号
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+	// java编译的时候缺省状态下会因为中文字符而失败
+	[compileJava,compileTestJava,javadoc]*.options*.encoding ='UTF-8'
+
+	ext {
+		junitVersion = '4.12'
+	}
+
+	// 定义仓库
+	repositories {
+		maven {
+			url 'http://maven.aliyun.com/nexus/content/groups/public/'
+		}
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+		mavenCentral()
+	}
+
+	// 所有模块依赖
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter-web'
+
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	}
+
+}
+
+// 子模块通用配置
+subprojects {
+
+	// 定义版本号
+	ext {
+
+	}
+
+	// 子模块通用依赖
+	dependencies {
+		compile 'mysql:mysql-connector-java:5.1.46'
+		compile "org.springframework.boot:spring-boot-starter-jdbc"
+	}
+}
