@@ -1,7 +1,8 @@
 package com.schening.phoenix.security.web;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,9 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginResource {
 
-    @PostMapping(value = "/login‐success")
+    @RequestMapping(value = "/login‐success")
     public String loginSuccess() {
-        return " 登录成功";
+        String username = getUsername();
+        return " 登录成功：" + username;
     }
 
     /**
@@ -42,10 +44,28 @@ public class LoginResource {
      *
      * @return
      */
-    @GetMapping(value = "/e/e1")
-    public String e1() {
-        return " 访问其它资源1";
+    @GetMapping(value = "/r/r3")
+    public String r3() {
+        return " 访问资源3";
     }
 
+    /**
+     * 获取当前登录用户名
+     * @return
+     */
+    private String getUsername() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!authentication.isAuthenticated()) {
+            return null;
+        }
+        Object principal = authentication.getPrincipal();
+        String username = null;
+        if (principal instanceof org.springframework.security.core.userdetails.UserDetails) {
+            username = ((org.springframework.security.core.userdetails.UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        return username;
+    }
 
 }

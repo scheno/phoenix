@@ -1,6 +1,7 @@
-package com.schening.phoenix.security.config;
+package com.schening.phoenix.security.uaa.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -28,10 +29,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        manager.createUser(User.withUsername("lisi").password("456").authorities("p2").build());
 //        return manager;
 //    }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
     /**
@@ -42,18 +48,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                .and()
+//        http
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/r/r1").hasAuthority("p1")
+//                .antMatchers("/r/r2").hasAuthority("p2")
+//                .antMatchers("/r/r3").access("hasAnyAuthority('p1') and hasAnyAuthority('p2')")
+//                .antMatchers("/r/**").authenticated()
+//                .anyRequest().permitAll()
+//                .and()
+//                .formLogin().successForwardUrl("/login‐success");
+        http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/r/r1").hasAuthority("p1")
-                .antMatchers("/r/r2").hasAuthority("p2")
-                .antMatchers("/r/r3").access("hasAnyAuthority('p1') and ha")
-                .antMatchers("/r/**").authenticated()
-                .anyRequest().permitAll()
-                .and()
-                .formLogin().successForwardUrl("/login‐success");
+                .antMatchers("/r/r1").hasAnyAuthority("p1")
+                .antMatchers("/login*").permitAll()
+                .anyRequest().authenticated()
+                .and().formLogin();
     }
 
 }
