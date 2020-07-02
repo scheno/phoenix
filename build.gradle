@@ -73,8 +73,8 @@ subprojects {
 
 	// 子模块通用依赖
 	dependencies {
-		compile 'mysql:mysql-connector-java:5.1.46'
-		compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.2'
-		compile "org.springframework.boot:spring-boot-starter-jdbc"
+		implementation 'mysql:mysql-connector-java:5.1.46'
+		implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.2'
+		implementation "org.springframework.boot:spring-boot-starter-jdbc"
 	}
 }

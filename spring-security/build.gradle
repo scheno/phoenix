@@ -3,6 +3,7 @@ subprojects {
         implementation "org.springframework.boot:spring-boot-starter-security"
         implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
 
+        compile 'com.alibaba:fastjson:1.2.72'
         compile 'org.springframework.security:spring-security-jwt:1.1.1.RELEASE'
         compile 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.2.8.RELEASE'
     }

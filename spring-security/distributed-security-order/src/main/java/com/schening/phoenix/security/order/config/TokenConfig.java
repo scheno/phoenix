@@ -1,4 +1,4 @@
-package com.schening.phoenix.security.uaa.config;
+package com.schening.phoenix.security.order.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,10 +7,8 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 /**
- * 令牌管理配置
- *
  * @author schening
- * @date
+ * @date 2020/7/1
  */
 @Configuration
 public class TokenConfig {
