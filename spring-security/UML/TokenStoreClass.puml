@@ -1,0 +1,15 @@
+@startuml
+
+interface TokenStore
+
+class InMemoryTokenStore
+class JwtTokenStore
+class RedisTokenStore
+
+TokenStore <|-- InMemoryTokenStore
+TokenStore <|-- JwtTokenStore
+TokenStore <|-- RedisTokenStore
+
+interface AuthorizationServerConfigurer
+
+@enduml
