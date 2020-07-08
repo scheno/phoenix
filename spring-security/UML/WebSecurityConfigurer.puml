@@ -1,0 +1,22 @@
+@startuml
+
+interface SecurityConfigurer
+interface WebSecurityConfigurer
+
+abstract class SecurityConfigurerAdapter
+abstract class WebSecurityConfigurerAdapter
+
+class AuthorizationServerSecurityConfigurer
+class AuthorizationServerSecurityConfiguration
+class ResourceServerConfiguration
+
+SecurityConfigurer <|-- WebSecurityConfigurer
+SecurityConfigurer <|.. SecurityConfigurerAdapter
+
+WebSecurityConfigurer <|.. WebSecurityConfigurerAdapter
+WebSecurityConfigurerAdapter <|-- AuthorizationServerSecurityConfiguration
+WebSecurityConfigurerAdapter <|-- ResourceServerConfiguration
+
+SecurityConfigurerAdapter <|-- AuthorizationServerSecurityConfigurer
+
+@enduml
