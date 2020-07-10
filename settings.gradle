@@ -11,4 +11,5 @@ include 'spring-security:distributed-security-uaa'
 findProject(':spring-security:distributed-security-uaa')?.name = 'distributed-security-uaa'
 include 'spring-security:distributed-security-order'
 findProject(':spring-security:distributed-security-order')?.name = 'distributed-security-order'
+include 'spring-annotation'
 

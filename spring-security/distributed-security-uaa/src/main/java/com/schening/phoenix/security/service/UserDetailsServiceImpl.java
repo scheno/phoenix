@@ -1,8 +1,8 @@
-package com.schening.phoenix.security.uaa.service;
+package com.schening.phoenix.security.service;
 
-import com.schening.phoenix.security.uaa.repository.UserMapper;
-import com.schening.phoenix.security.uaa.dto.PermissionDTO;
-import com.schening.phoenix.security.uaa.dto.UserDTO;
+import com.schening.phoenix.security.dto.UserDTO;
+import com.schening.phoenix.security.repository.UserMapper;
+import com.schening.phoenix.security.dto.PermissionDTO;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

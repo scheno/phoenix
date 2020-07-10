@@ -1,4 +1,4 @@
-package com.schening.phoenix.security.uaa.config;
+package com.schening.phoenix.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

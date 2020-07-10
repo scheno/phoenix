@@ -1,4 +1,4 @@
-package com.schening.phoenix.security.uaa.dto;
+package com.schening.phoenix.security.dto;
 
 import java.io.Serializable;
 

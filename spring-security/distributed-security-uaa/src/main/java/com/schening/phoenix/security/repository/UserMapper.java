@@ -1,7 +1,7 @@
-package com.schening.phoenix.security.uaa.repository;
+package com.schening.phoenix.security.repository;
 
-import com.schening.phoenix.security.uaa.dto.PermissionDTO;
-import com.schening.phoenix.security.uaa.dto.UserDTO;
+import com.schening.phoenix.security.dto.PermissionDTO;
+import com.schening.phoenix.security.dto.UserDTO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
