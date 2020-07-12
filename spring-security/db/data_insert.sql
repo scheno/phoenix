@@ -18,12 +18,3 @@ INSERT INTO oauth_client_details
 VALUES ('c2', 'res2', '$2a$10$NlBC84MVb7F95EXYTXwLneXgCca6/GipyWR5NHm8K0203bSQMLpvm', 'ROLE_API',
         'client_credentials,password,authorization_code,implicit,refresh_token', 'http://www.baidu.com', NULL, 31536000,
         2592000, NULL, '2019‐09‐09 21:48:51', 0, 0, 'false');
-
-INSERT INTO oauth_client_details
-VALUES ('c1', 'res1', '$2a$10$NlBC84MVb7F95EXYTXwLneXgCca6/GipyWR5NHm8K0203bSQMLpvm', 'ROLE_ADMIN,ROLE_USER,ROLE_API',
-        'client_credentials,password,authorization_code,implicit,refresh_token', 'http://www.baidu.com', NULL, 7200,
-        259200, NULL, NULL, 0, 0, 'false');
-INSERT INTO oauth_client_details
-VALUES ('c2', 'res2', '$2a$10$NlBC84MVb7F95EXYTXwLneXgCca6/GipyWR5NHm8K0203bSQMLpvm', 'ROLE_API',
-        'client_credentials,password,authorization_code,implicit,refresh_token', 'http://www.baidu.com', NULL, 31536000,
-        2592000, NULL, NULL, 0, 0, 'false');
