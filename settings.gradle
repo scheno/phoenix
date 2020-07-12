@@ -14,3 +14,6 @@ findProject(':spring-security:distributed-security-order')?.name = 'distributed-
 include 'spring-annotation'
 include 'spring-security:spring-security'
 findProject(':spring-security:spring-security')?.name = 'spring-security'
+include 'spring-security:spring-security-oauth2'
+findProject(':spring-security:spring-security-oauth2')?.name = 'spring-security-oauth2'
+
