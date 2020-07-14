@@ -1,10 +1,7 @@
 package com.schening.phoenix.security.repository;
 
-import com.schening.phoenix.security.po.PermissionPO;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import com.schening.phoenix.security.domain.PermissionDO;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -25,8 +22,14 @@ public interface PermissionMapper {
             @Result(column = "id", property = "id"),
             @Result(column = "code", property = "code"),
             @Result(column = "description", property = "description"),
-            @Result(column = "url", property = "url")
+            @Result(column = "url", property = "url"),
+            @Result(column = "role_list", property = "roleList")
     })
-    @Select("SELECT id, code, description, url from t_permission")
-    List<PermissionPO> listPermissions();
+    @Select("SELECT url, group_concat(t_role.role_name) as role_list\n" +
+            "FROM t_permission\n" +
+            "LEFT JOIN t_role_permission ON t_permission.id = t_role_permission.permission_id\n" +
+            "LEFT JOIN t_role ON t_role_permission.role_id = t_role.id\n" +
+            "GROUP BY url\n" +
+            "ORDER BY url")
+    List<PermissionDO> listPermissions();
 }

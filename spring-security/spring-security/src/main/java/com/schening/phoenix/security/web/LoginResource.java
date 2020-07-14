@@ -63,7 +63,7 @@ public class LoginResource {
      *
      * @return
      */
-    private String getUserName() {
+    public String getUserName() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!authentication.isAuthenticated()) {
             return null;

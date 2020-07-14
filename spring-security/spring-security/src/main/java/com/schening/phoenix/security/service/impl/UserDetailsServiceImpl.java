@@ -1,7 +1,9 @@
 package com.schening.phoenix.security.service.impl;
 
 import com.schening.phoenix.security.po.PermissionPO;
+import com.schening.phoenix.security.po.RolePO;
 import com.schening.phoenix.security.po.UserPO;
+import com.schening.phoenix.security.repository.RoleMapper;
 import com.schening.phoenix.security.repository.UserMapper;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.User;
@@ -24,6 +26,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Resource
     private UserMapper userMapper;
 
+    @Resource
+    private RoleMapper roleMapper;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //登录账号
@@ -36,16 +41,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             return null;
         }
 
-        List<PermissionPO> permissionPOList = userMapper.listPermissionByUserId(userPO.getId());
+        List<RolePO> rolePOList = roleMapper.listRolesByUserId(userPO.getId());
 
         // 查询用户权限
-        List<String> permissionList = new ArrayList<>();
+        List<String> roleList = new ArrayList<>();
 
-        permissionPOList.forEach(permissionDTO -> permissionList.add(permissionDTO.getCode()));
-        String[] permissionArray = new String[permissionList.size()];
-        permissionList.toArray(permissionArray);
+        rolePOList.forEach(rolePO -> roleList.add("ROLE_" + rolePO.getRoleName().toUpperCase()));
+        String[] roleArray = new String[roleList.size()];
+        roleList.toArray(roleArray);
 
-        UserDetails userDetails = User.withUsername(userPO.getFullname()).password(userPO.getPassword()).authorities(permissionArray).build();
+        UserDetails userDetails = User.withUsername(userPO.getFullname()).password(userPO.getPassword()).authorities(roleArray).build();
 
         return userDetails;
     }
