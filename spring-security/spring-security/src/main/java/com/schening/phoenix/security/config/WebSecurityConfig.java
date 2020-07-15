@@ -32,11 +32,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-//                .antMatchers("/r/r1").hasAuthority("p1")
-//                .antMatchers("/r/r2").hasAuthority("p2")
-//                .antMatchers("/r/r3").access("hasAuthority('p1') and hasAnyAuthority('p2')")
-                .antMatchers("/r/**").authenticated()
-                .anyRequest().permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .formLogin().successForwardUrl("/login-success");
     }
