@@ -31,11 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //登录账号
-        System.out.println("username=" + username);
         //根据账号去数据库查询...
-        // 这里暂时使用静态数据
-        // UserDetails userDetails = User.withUsername(username).password("$2a$10$Pc9jRtRE6vO0k42JfH78IO/UchL3W6.3YUGOx8tXMJO/aP5fUR0X2").authorities("p1").build();
         UserPO userPO = userMapper.getUserByUsername(username);
         if (userPO == null) {
             return null;

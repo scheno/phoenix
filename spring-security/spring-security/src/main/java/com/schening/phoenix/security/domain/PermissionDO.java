@@ -1,7 +1,5 @@
 package com.schening.phoenix.security.domain;
 
-import java.util.List;
-
 /**
  * @author schening
  * @date 2020/7/14

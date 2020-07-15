@@ -26,10 +26,6 @@ import java.io.IOException;
 @Service
 public class AbstractSecurityInterceptorImpl extends AbstractSecurityInterceptor implements Filter {
 
-    @Resource
-    private AccessDecisionManager accessDecisionManager;
-
-
     /**
      * 注入自定义的资源（url）权限（角色）获取类
      */

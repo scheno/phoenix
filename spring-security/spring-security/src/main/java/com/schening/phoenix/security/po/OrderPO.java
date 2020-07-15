@@ -26,10 +26,6 @@ public class OrderPO {
         this.name = name;
     }
 
-    public String getHello() throws Exception {
-        return "hello";
-    }
-
     @Override
     public String toString() {
         return "OrderPO{" +

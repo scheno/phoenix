@@ -1,7 +1,6 @@
 package com.schening.phoenix.security.authorization;
 
 import com.schening.phoenix.security.domain.PermissionDO;
-import com.schening.phoenix.security.po.PermissionPO;
 import com.schening.phoenix.security.po.RolePO;
 import com.schening.phoenix.security.repository.PermissionMapper;
 import com.schening.phoenix.security.repository.RoleMapper;
@@ -61,24 +60,6 @@ public class FilterInvocationSecurityMetadataSourceImpl implements FilterInvocat
             map.put(permissionDO.getUrl(), configAttributeCollection);
         });
 
-//        /**
-//         * 创建两个权限集合
-//         */
-//        List<ConfigAttribute> adminUrlRoles = new ArrayList<>();
-//        adminUrlRoles.add(adminRole);
-//        List<ConfigAttribute> employeeUrlRoles = new ArrayList<>();
-//        employeeUrlRoles.add(employeeRole);
-//
-//        /**
-//         * 设置资源（url）所需要的权限（角色）集合
-//         */
-//        map.put("/r/r1", adminUrlRoles);
-//        map.put("/r/r2", employeeUrlRoles);
-//        map.put("/toUser", null);
-//        map.put("/toAbout", null);
-//        map.put("/toHome", null);
-//        map.put("/getPrincipal", null);
-//        map.put("/getUserDetails", null);
     }
 
     /**
