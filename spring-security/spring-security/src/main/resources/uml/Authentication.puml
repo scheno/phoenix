@@ -1,0 +1,13 @@
+@startuml
+
+UsernamePasswordAuthenticationFilter -> AbstractAuthenticationProcessingFilter : doFilter()
+
+AbstractAuthenticationProcessingFilter -> UsernamePasswordAuthenticationFilter : attemptAuthentication()
+
+UsernamePasswordAuthenticationFilter -> ProviderManager : authenticate()
+
+ProviderManager -> AuthenticationProvider : authenticate()
+
+
+
+@enduml

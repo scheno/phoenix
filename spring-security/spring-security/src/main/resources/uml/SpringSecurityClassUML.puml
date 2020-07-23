@@ -1,0 +1,95 @@
+@startuml
+
+abstract class AbstractAuthenticationProcessingFilter {
+    -AuthenticationManager authenticationManager
+    +void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+    +{abstract} Authentication attemptAuthentication(HttpServletRequest request,
+     			HttpServletResponse response)
+    #AuthenticationManager getAuthenticationManager()
+}
+
+class UsernamePasswordAuthenticationFilter {
+}
+
+AbstractAuthenticationProcessingFilter <|-- UsernamePasswordAuthenticationFilter
+
+
+interface AuthenticationManager {
+    +{abstract} Authentication authenticate(Authentication authentication)
+}
+
+class ProviderManager {
+
+}
+
+AuthenticationManager <|-- ProviderManager
+
+interface AuthenticationProvider {
+    +{abstract} Authentication authenticate(Authentication authentication)
+}
+
+abstract class AbstractUserDetailsAuthenticationProvider {
+    #{abstract} UserDetails retrieveUser(String username,
+    			UsernamePasswordAuthenticationToken authentication)
+    #{abstract} void additionalAuthenticationChecks(UserDetails userDetails,
+    			UsernamePasswordAuthenticationToken authentication)
+    #Authentication createSuccessAuthentication(Object principal,
+    			Authentication authentication, UserDetails user)
+}
+
+class DaoAuthenticationProvider {
+
+}
+
+AuthenticationProvider <|.. AbstractUserDetailsAuthenticationProvider
+AbstractUserDetailsAuthenticationProvider <|-- DaoAuthenticationProvider
+
+interface UserDetailsService {
+    +{abstract} UserDetails loadUserByUsername(String username)
+}
+
+interface UserDetailsManager {
+
+}
+
+class JdbcUserDetailsManager {
+
+}
+
+UserDetailsService <|-- UserDetailsManager
+UserDetailsManager <|.. JdbcUserDetailsManager
+
+interface Principal {
+
+}
+
+interface Authentication {
+    +{abstract} Collection<? extends GrantedAuthority> getAuthorities()
+    +{abstract} Object getCredentials()
+    +{abstract} Object getDetails()
+    +{abstract} Object getPrincipal()
+    +{abstract} boolean isAuthenticated()
+    +{abstract} void setAuthenticated(boolean isAuthenticated)
+}
+
+abstract class AbstractAuthenticationToken {
+	-final Collection<GrantedAuthority> authorities
+	-Object details
+	-boolean authenticated = false
+}
+
+class UsernamePasswordAuthenticationToken {
+	-final Object principal;
+	-Object credentials;
+}
+
+Principal <|-- Authentication
+Authentication <|.. AbstractAuthenticationToken
+AbstractAuthenticationToken <|-- UsernamePasswordAuthenticationToken
+
+AbstractAuthenticationProcessingFilter -> AuthenticationManager
+AuthenticationManager .> Authentication
+ProviderManager o--> AuthenticationProvider
+DaoAuthenticationProvider -> UserDetailsService
+
+@enduml
