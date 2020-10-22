@@ -7,6 +7,8 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: root
+  main:
+    allow-bean-definition-overriding: true
 
 
 ignored:
@@ -14,3 +16,4 @@ ignored:
     - /r/r3
 server:
   port: 8000
+

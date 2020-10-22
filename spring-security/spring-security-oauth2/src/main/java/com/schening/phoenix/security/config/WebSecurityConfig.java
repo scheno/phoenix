@@ -1,12 +1,10 @@
 package com.schening.phoenix.security.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * Spring Security核心配置类
@@ -16,23 +14,24 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @author schening
  * @date 2020/6/29
  */
+@Order(2)
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
+    /**
+     * 用来配置拦截保护的请求
+     *
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .formLogin().successForwardUrl("/login-success");
+                .csrf().disable()
+                .requestMatchers().antMatchers("/oauth/**", "/login/**", "/logout/**")
+                .and().authorizeRequests().antMatchers("/oauth/*").authenticated()
+                .and().formLogin().successForwardUrl("/login-success").permitAll();
     }
 
 }

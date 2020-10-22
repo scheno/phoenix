@@ -10,4 +10,7 @@ include 'spring-security:spring-security'
 findProject(':spring-security:spring-security')?.name = 'spring-security'
 include 'spring-security:spring-security-oauth2'
 findProject(':spring-security:spring-security-oauth2')?.name = 'spring-security-oauth2'
+include 'pattern'
+include 'pattern:factory'
+findProject(':pattern:factory')?.name = 'factory'
 

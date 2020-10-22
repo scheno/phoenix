@@ -84,3 +84,25 @@ CREATE TABLE oauth_code
   CHARACTER SET = utf8
   COLLATE = utf8_general_ci
   ROW_FORMAT = Compact;
+
+create table oauth_access_token (
+    token_id VARCHAR(255),
+    token BLOB,
+    authentication_id VARCHAR(255) PRIMARY KEY,
+    user_name VARCHAR(255),
+    client_id VARCHAR(255),
+    authentication BLOB,
+    refresh_token VARCHAR(255)
+) ENGINE = InnoDB
+  CHARACTER SET = utf8
+  COLLATE = utf8_general_ci
+  ROW_FORMAT = Compact;
+
+create table oauth_refresh_token (
+    token_id VARCHAR(255),
+    token BLOB,
+    authentication BLOB
+) ENGINE = InnoDB
+  CHARACTER SET = utf8
+  COLLATE = utf8_general_ci
+  ROW_FORMAT = Compact;
